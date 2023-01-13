@@ -3,6 +3,7 @@ import random
 
 #global word bank 
 wordBank = ["ford", "disneyland", "apple", "red", "america"]
+global gameOver
 hangman = [  " ___________"
             ,"|     |     |"
             ,"|    ___    |"
@@ -51,13 +52,17 @@ def gameLogic():
     for x in range(0, len(randWord)):
         underscores.append("_")
     print("".join(underscores))
-    guess = input("Your guess: ")
-    
-#compare the guess to the letters in randWord
-    for s in range(0,len(randWord)):
-        if(guess == randWord[s]):
-            underscores[s] = guess
-    print("".join(underscores))
+    gameOver = False
+    while(not(gameOver)):
+        guess = input("Your guess: ")
+        #compare the guess to the letters in randWord
+        for s in range(0,len(randWord)):
+            if(guess == randWord[s]):
+             underscores[s] = guess
+        currentWord = "".join(underscores)
+        print(currentWord)
+        if (currentWord == randWord):
+            gameOver = True
 
 def main():
     welcome()
